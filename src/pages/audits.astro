@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const audits = [
+  {
+    name: 'ParityUSD',
+    description: 'Stablecoin protocol on Bitcoin Cash (BCH).',
+    role: 'Smart contract and protocol security audit.',
+    status: 'Completed',
+    network: 'Bitcoin Cash (BCH)',
+    report: '/audits/parityusd.pdf',
+  },
+];
+---
+
+<BaseLayout
+  title="Audits – Sighash Labs"
+  description="Explore completed blockchain security engagements from Sighash Labs."
+>
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <div class="max-w-3xl">
+      <p class="eyebrow">Audit library</p>
+      <h1 class="mt-4 text-4xl font-semibold text-white">Published security reviews</h1>
+      <p class="mt-4 text-base text-slate-300">
+        We publish summaries for select engagements with client approval. Each report includes methodology, findings, and remediation
+        guidance. Reach out to discuss availability for your protocol.
+      </p>
+      <a
+        href="mailto:info@sighash.xyz"
+        class="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-500/90 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400"
+      >
+        Request an audit
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="mt-14 space-y-6">
+      {audits.map((audit) => (
+        <article class="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-lg shadow-black/30">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 class="text-2xl font-semibold text-white">{audit.name}</h2>
+              <p class="mt-2 text-sm text-slate-300">{audit.description}</p>
+            </div>
+            <span class="inline-flex items-center rounded-full border border-emerald-400/30 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+              {audit.status}
+            </span>
+          </div>
+
+          <dl class="mt-6 grid gap-6 sm:grid-cols-3">
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-400">Network</dt>
+              <dd class="mt-2 text-sm text-white">{audit.network}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-400">Role</dt>
+              <dd class="mt-2 text-sm text-white">{audit.role}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-400">Public report</dt>
+              <dd class="mt-2 text-sm text-slate-300">
+                {audit.report ? (
+                  <a href={audit.report} class="text-emerald-300 underline-offset-4 hover:text-white hover:underline">
+                    View report
+                  </a>
+                ) : (
+                  'Coming soon'
+                )}
+              </dd>
+            </div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+

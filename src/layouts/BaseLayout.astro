@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import logoWhite from '../../public/logo/logo_sighas_labs_white.png';
+
+const {
+  title = 'Sighash Labs',
+  description = 'Sighash Labs delivers blockchain security assessments, protocol reviews, and remediation guidance for mission-critical teams.',
+} = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/audits', label: 'Audits' },
+];
+
+const currentPath = Astro.url.pathname?.replace(/\/$/, '') || '/';
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased overflow-y-scroll">
+    <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.18),_transparent_55%)]" aria-hidden="true" />
+    <div class="relative flex min-h-screen flex-col">
+      <header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/80 backdrop-blur">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <a href="/" class="inline-flex items-center shrink-0">
+            <img src={logoWhite.src} alt="Sighash Labs logo" class="max-h-10 w-auto" />
+          </a>
+          <div class="flex items-center gap-8">
+            {navLinks.map(({ href, label }) => {
+              const normalized = href === '/' ? '/' : href.replace(/\/$/, '');
+              const isActive = currentPath === normalized;
+              return (
+                <a
+                  href={href}
+                  class={`text-base font-semibold transition-colors ${isActive ? 'text-white' : 'text-slate-400 hover:text-white'}`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {label}
+                </a>
+              );
+            })}
+          </div>
+          <a
+            href="mailto:info@sighash.xyz"
+            class="inline-flex items-center gap-2 rounded-full bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+          >
+            Request audit
+            <span aria-hidden="true">→</span>
+          </a>
+        </nav>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer class="border-t border-white/5 bg-slate-950/80">
+        <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="font-semibold text-white">Sighash Labs</p>
+            <p class="mt-1 text-xs text-slate-500">© {new Date().getFullYear()} All rights reserved.</p>
+          </div>
+          <div class="flex items-center gap-6">
+            <a href="mailto:info@sighash.xyz" class="font-medium text-emerald-300 transition hover:text-white">
+              info@sighash.xyz
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
