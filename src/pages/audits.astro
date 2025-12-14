@@ -6,9 +6,9 @@ const audits = [
     name: 'ParityUSD',
     description: 'Stablecoin protocol on Bitcoin Cash (BCH).',
     role: 'Smart contract and protocol security audit.',
-    status: 'Completed',
+    status: 'Pending',
     network: 'Bitcoin Cash (BCH)',
-    report: '/audits/parityusd.pdf',
+    report: null,
   },
 ];
 ---
@@ -42,7 +42,7 @@ const audits = [
               <h2 class="text-2xl font-semibold text-white">{audit.name}</h2>
               <p class="mt-2 text-sm text-slate-300">{audit.description}</p>
             </div>
-            <span class="inline-flex items-center rounded-full border border-emerald-400/30 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+            <span class={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${audit.status === 'Pending' ? 'border-amber-400/30 text-amber-300' : 'border-emerald-400/30 text-emerald-300'}`}>
               {audit.status}
             </span>
           </div>
