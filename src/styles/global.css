@@ -27,8 +27,14 @@
   .text-rotator {
     @apply relative inline-flex text-emerald-300;
     min-height: 1.3em;
-    min-width: 16ch;
+    min-width: 12ch;
     vertical-align: bottom;
+  }
+
+  @media (min-width: 640px) {
+    .text-rotator {
+      min-width: 16ch;
+    }
   }
 
   .text-rotator-line {

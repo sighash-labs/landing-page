@@ -29,18 +29,44 @@ const currentPath = Astro.url.pathname?.replace(/\/$/, '') || '/';
     <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.18),_transparent_55%)]" aria-hidden="true" />
     <div class="relative flex min-h-screen flex-col">
       <header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/80 backdrop-blur">
-        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="/" class="inline-flex items-center shrink-0">
-            <img src={logoWhite.src} alt="Sighash Labs logo" class="max-h-10 w-auto" />
-          </a>
-          <div class="flex items-center gap-8">
+        <nav class="mx-auto max-w-6xl px-6 py-4">
+          <div class="relative flex flex-wrap items-center justify-center gap-3 sm:justify-between">
+            <a href="/" class="inline-flex items-center shrink-0 sm:flex-1">
+              <img src={logoWhite.src} alt="Sighash Labs logo" class="max-h-10 w-auto" />
+            </a>
+            <div class="hidden items-center gap-2 sm:absolute sm:left-1/2 sm:flex sm:-translate-x-1/2">
+              {navLinks.map(({ href, label }) => {
+                const normalized = href === '/' ? '/' : href.replace(/\/$/, '');
+                const isActive = currentPath === normalized;
+                return (
+                  <a
+                    href={href}
+                    class={`relative rounded-full px-4 py-2 text-base font-semibold transition-all ${isActive ? 'bg-white/10 text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
+            </div>
+            <div class="sm:flex sm:flex-1 sm:justify-end">
+              <a
+                href="mailto:info@sighash.xyz"
+                class="relative z-10 inline-flex items-center gap-2 rounded-full bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+              >
+                Request audit
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center justify-center gap-2 sm:hidden">
             {navLinks.map(({ href, label }) => {
               const normalized = href === '/' ? '/' : href.replace(/\/$/, '');
               const isActive = currentPath === normalized;
               return (
                 <a
                   href={href}
-                  class={`text-base font-semibold transition-colors ${isActive ? 'text-white' : 'text-slate-400 hover:text-white'}`}
+                  class={`relative rounded-full px-4 py-2 text-base font-semibold transition-all ${isActive ? 'bg-white/10 text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {label}
@@ -48,13 +74,6 @@ const currentPath = Astro.url.pathname?.replace(/\/$/, '') || '/';
               );
             })}
           </div>
-          <a
-            href="mailto:info@sighash.xyz"
-            class="inline-flex items-center gap-2 rounded-full bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
-          >
-            Request audit
-            <span aria-hidden="true">→</span>
-          </a>
         </nav>
       </header>
 
