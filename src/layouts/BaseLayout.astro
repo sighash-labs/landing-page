@@ -4,7 +4,7 @@ import logoWhite from '../../public/logo/logo_sighas_labs_white.png';
 
 const {
   title = 'Sighash Labs',
-  description = 'Sighash Labs delivers blockchain security assessments, protocol reviews, and remediation guidance for mission-critical teams.',
+  description = 'Sighash Labs delivers UTXO smart contract development, protocol consulting, and security audits for Bitcoin, Bitcoin Cash, OPCAT layer, and Bitcoin-like systems.',
 } = Astro.props;
 
 const navLinks = [
@@ -54,8 +54,7 @@ const currentPath = Astro.url.pathname?.replace(/\/$/, '') || '/';
                 href="mailto:info@sighash.xyz"
                 class="relative z-10 inline-flex items-center gap-2 rounded-full bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
               >
-                Request audit
-                <span aria-hidden="true">→</span>
+                Contact
               </a>
             </div>
           </div>
@@ -97,4 +96,3 @@ const currentPath = Astro.url.pathname?.replace(/\/$/, '') || '/';
     </div>
   </body>
 </html>
-

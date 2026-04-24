@@ -3,66 +3,81 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const services = [
   {
-    title: 'Smart Contract Audits',
-    copy: 'In-depth reviews of your smart contracts to identify vulnerabilities before they reach production.',
+    title: 'UTXO Smart Contract Development',
+    copy: 'Design and implementation support for covenant-driven applications, transaction builders, wallet flows, and production UTXO contracts.',
   },
   {
-    title: 'Protocol Security Reviews',
-    copy: 'End-to-end analysis of protocol design, economic assumptions, and upgrade paths.',
+    title: 'Protocol Design & Consulting',
+    copy: 'Hands-on guidance for teams building on Bitcoin, Bitcoin Cash, OPCAT layer, Liquid, Arkade, Fractal, and related Bitcoin-like systems.',
   },
   {
-    title: 'Security Consulting & Threat Modeling',
-    copy: 'Hands-on guidance to map attack surfaces, prioritize fixes, and strengthen your security processes.',
+    title: 'Security Audits',
+    copy: 'Manual reviews of UTXO smart contracts, transaction protocols, bridge assumptions, and application logic before launch.',
   },
 ];
 
 const processSteps = [
-  { title: 'Scope', detail: 'We align on architecture, assumptions, timelines, and depth of review.' },
-  { title: 'Review & Analysis', detail: 'Manual code reads, dynamic testing, and scenario design tailored to your stack.' },
-  { title: 'Reporting', detail: 'Clear severity ratings, repro steps, and fixes prioritized for engineering teams.' },
-  { title: 'Remediation Support', detail: 'Rapid follow-ups to verify patches and keep launches on schedule.' },
+  { title: 'Map the transaction model', detail: 'We start from the exact scripts, covenants, state transitions, signing flows, and chain constraints your product depends on.' },
+  { title: 'Design or review the protocol', detail: 'We pressure-test the off-chain and on-chain pieces together, including failure modes, fee handling, replay risks, and upgrade paths.' },
+  { title: 'Build with your team', detail: 'Engagements can include implementation, test harnesses, transaction construction, wallet integration, or focused engineering review.' },
+  { title: 'Harden before release', detail: 'For audit work, you get concrete findings, exploit paths where relevant, and follow-up review of fixes.' },
 ];
 
 const valueProps = [
-  'Direct access to the auditors performing the work.',
-  'Tool-assisted coverage without sacrificing manual depth.',
-  'Transparent timelines, fixed scopes, and actionable guidance.',
+  'Deep experience with UTXO smart contracting and Bitcoin-style transaction semantics.',
+  'Practical support across consulting, implementation, and independent security review.',
+  'Clear scopes and direct collaboration with the engineer doing the work.',
+];
+
+const contactReasons = [
+  'You are designing a UTXO smart contract protocol and need the transaction model reviewed.',
+  'You need help turning a protocol spec into working scripts, transactions, tests, or wallet flows.',
+  'You are preparing for launch and want an independent review before funds are at risk.',
+  'You are unsure whether your covenant, state, or signing model is safe under adversarial conditions.',
+];
+
+const ecosystems = [
+  'Bitcoin',
+  'Bitcoin Cash',
+  'OPCAT layer',
+  'Liquid',
+  'Arkade',
+  'Fractal',
+  'Bitcoin-like L2s',
 ];
 ---
 
 <BaseLayout
-  title="Sighash Labs | Blockchain Security Audits"
-  description="Blockchain security audits for teams shipping protocols that cannot fail. Smart contract reviews, protocol hardening, and remediation support."
+  title="Sighash Labs | UTXO Programmability"
+  description="UTXO smart contract development, consulting, and security audits for Bitcoin, Bitcoin Cash, OPCAT layer, Liquid, Arkade, Fractal, and Bitcoin-like L2s."
 >
   <section class="relative isolate overflow-hidden">
-    <div class="pointer-events-none absolute -left-16 top-16 h-72 w-72 rounded-full bg-emerald-500/20 blur-[120px]" aria-hidden="true"></div>
-    <div class="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-sky-500/10 blur-[140px]" aria-hidden="true"></div>
     <div class="mx-auto flex max-w-6xl flex-col items-center px-6 pt-28 pb-20 text-center">
       <h1 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-        Blockchain security for
+        UTXO programmability for
         <span class="text-rotator sm:ml-3" aria-live="polite">
-          <span class="text-rotator-line">critical launches</span>
-          <span class="text-rotator-line">protocol rollouts</span>
-          <span class="text-rotator-line">founder roadmaps</span>
-          <span class="text-rotator-line">ecosystem upgrades</span>
-          <span class="text-rotator-line">high-stakes teams</span>
+          <span class="text-rotator-line">Bitcoin</span>
+          <span class="text-rotator-line">Bitcoin Cash</span>
+          <span class="text-rotator-line">Liquid</span>
+          <span class="text-rotator-line">Arkade</span>
+          <span class="text-rotator-line">Fractal</span>
         </span>
       </h1>
       <p class="mt-12 max-w-3xl text-lg text-slate-300 sm:mt-6">
-        Blockchain security audits for protocols that can’t afford to fail. We partner with founders to harden smart contracts and ship with confidence on any chain.
+        Sighash Labs helps teams design, build, and secure applications on Bitcoin, Bitcoin Cash, OPCAT layer, and Bitcoin-like UTXO systems. We provide consulting, development, and audits for smart contracts, covenant protocols, transaction flows, and L2 infrastructure.
       </p>
       <div class="mt-10 flex flex-col gap-4 sm:flex-row">
         <a
           href="mailto:info@sighash.xyz"
           class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-8 py-3 text-base font-semibold text-white shadow-xl shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
         >
-          Request an audit
+          Discuss a UTXO project
         </a>
         <a
           href="/audits"
           class="inline-flex items-center justify-center rounded-full border border-white/10 px-8 py-3 text-base font-semibold text-white/80 transition hover:border-white/40 hover:text-white"
         >
-          View audits
+          View audit archive
         </a>
       </div>
     </div>
@@ -72,14 +87,13 @@ const valueProps = [
     <div class="flex flex-col items-start gap-6 text-left md:flex-row md:items-center md:justify-between">
       <div>
         <p class="eyebrow">What we do</p>
-        <h2 class="mt-3 text-3xl font-semibold text-white">Security reviews for protocol teams</h2>
+        <h2 class="mt-3 text-3xl font-semibold text-white">Consulting, development, and audits for UTXO teams</h2>
         <p class="mt-4 max-w-2xl text-base text-slate-300">
-          We work with teams building high-impact blockchain protocols to reduce risk before launch and ahead of major upgrades.
-          Every engagement is scoped to your architecture, timelines, and risk tolerance.
+          UTXO applications are won or lost in the details: script limits, transaction topology, state encoding, wallet behavior, mempool policy, and adversarial signing paths. We help teams reason through those constraints and ship working systems.
         </p>
       </div>
       <a href="mailto:info@sighash.xyz" class="text-sm font-semibold text-emerald-300 transition hover:text-white">
-        Get scoped →
+        Start a conversation
       </a>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-3">
@@ -96,9 +110,9 @@ const valueProps = [
     <div class="mx-auto max-w-6xl px-6 py-16">
       <div class="max-w-3xl">
         <p class="eyebrow">How we work</p>
-        <h2 class="mt-3 text-3xl font-semibold text-white">A predictable audit process</h2>
+        <h2 class="mt-3 text-3xl font-semibold text-white">From transaction design to launch review</h2>
         <p class="mt-4 text-base text-slate-300">
-          Fast turnarounds without sacrificing review depth. We stay close to your engineering team from kickoff through fixes.
+          Engagements can be advisory, implementation-heavy, audit-focused, or a mix. The common thread is precise reasoning about the UTXO model and the product constraints around it.
         </p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2">
@@ -113,14 +127,38 @@ const valueProps = [
     </div>
   </section>
 
+  <section class="bg-slate-900/40">
+    <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div>
+        <p class="eyebrow">When to contact us</p>
+        <h2 class="mt-3 text-3xl font-semibold text-white">Bring us in before the transaction model hardens</h2>
+        <p class="mt-4 text-base text-slate-300">
+          The best time to catch UTXO protocol issues is while the architecture is still flexible. We can help at the design, build, or pre-launch review stage.
+        </p>
+        <a
+          href="mailto:info@sighash.xyz"
+          class="mt-8 inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+        >
+          Discuss a UTXO project
+        </a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {contactReasons.map((reason) => (
+          <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-5 shadow-lg shadow-black/20">
+            <p class="text-sm leading-6 text-slate-200">{reason}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-10 lg:grid-cols-[2fr_1fr]">
       <div>
         <p class="eyebrow">Why sighash</p>
-        <h2 class="mt-3 text-3xl font-semibold text-white">Security partners, not vendors</h2>
+        <h2 class="mt-3 text-3xl font-semibold text-white">Specialized in Bitcoin-style programmability</h2>
         <p class="mt-4 text-base text-slate-300">
-          We’ve spent the last several cycles hardening blockchain infrastructure. Our perspective helps teams avoid the traps we’ve
-          seen across ecosystems.
+          General smart contract experience does not automatically translate to UTXO systems. Sighash Labs focuses on the transaction-level design, contract constraints, and protocol edge cases that matter on Bitcoin, Bitcoin Cash, and adjacent chains.
         </p>
         <ul class="mt-8 space-y-4">
           {valueProps.map((point) => (
@@ -130,20 +168,27 @@ const valueProps = [
             </li>
           ))}
         </ul>
+        <div class="mt-8 flex flex-wrap gap-3">
+          {ecosystems.map((ecosystem) => (
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
+              {ecosystem}
+            </span>
+          ))}
+        </div>
       </div>
       <div class="glass-panel flex flex-col justify-between p-6">
         <div>
-          <p class="text-sm font-semibold text-emerald-200">Featured work</p>
+          <p class="text-sm font-semibold text-emerald-200">Separate audit archive</p>
           <h3 class="mt-3 text-2xl font-semibold text-white">Audits library</h3>
           <p class="mt-3 text-sm text-slate-300">
-            Explore published engagements, scope summaries, and release-ready recommendations from the Sighash Labs team.
+            Published audit reports remain available on a dedicated page, separate from consulting and development services.
           </p>
         </div>
         <a
           href="/audits"
           class="mt-8 inline-flex items-center justify-center rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
         >
-          Explore past audits →
+          Explore past audits
         </a>
       </div>
     </div>
