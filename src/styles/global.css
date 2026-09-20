@@ -1,118 +1,96 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Inter var", "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --color-paper: #f6f2e9;
+  --color-ink: #23201b;
+  --color-line: rgba(35, 32, 27, 0.14);
 }
 
 @layer base {
   :root {
     font-family: var(--font-sans);
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
-    @apply bg-slate-950 text-slate-100 antialiased;
+    @apply bg-paper text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-emerald-600/25;
   }
 }
 
 @layer utilities {
-  .glass-panel {
-    @apply rounded-3xl border border-white/5 bg-white/5 shadow-2xl shadow-slate-950/40 backdrop-blur;
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500;
   }
 
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300;
+  .rule {
+    @apply border-t border-line;
+  }
+
+  /* Naturalist plate behind the hero: multiply blend over the matching paper tone,
+     with a radial mask so the scan's own edges never show. The frame keeps it tied
+     to the content column instead of the viewport edge on wide screens. */
+  .plate {
+    @apply pointer-events-none absolute inset-0 overflow-hidden;
+  }
+
+  .plate-frame {
+    @apply relative mx-auto h-full w-full max-w-7xl;
+  }
+
+  .plate img {
+    @apply absolute top-1/2 h-full w-auto max-w-none -translate-y-1/2;
+    right: -6%;
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+    mask-image: radial-gradient(ellipse 44% 48% at 58% 50%, #000 0%, rgba(0, 0, 0, 0.6) 52%, transparent 100%);
+  }
+
+  @media (max-width: 640px) {
+    .plate img {
+      @apply bottom-0 top-auto h-3/5 translate-y-0;
+      right: -22%;
+      opacity: 0.32;
+    }
   }
 
   .text-rotator {
-    @apply relative inline-flex text-emerald-300;
-    min-height: 1.3em;
-    min-width: 12ch;
-    vertical-align: bottom;
-  }
-
-  @media (min-width: 640px) {
-    .text-rotator {
-      min-width: 16ch;
-    }
+    @apply relative inline-flex align-bottom text-emerald-700;
+    min-height: 1.15em;
+    min-width: 11ch;
   }
 
   .text-rotator-line {
-    @apply absolute left-0 top-0 block w-full font-semibold leading-tight;
+    @apply absolute left-0 top-0 block w-full leading-tight;
     opacity: 0;
-    transform: translateY(40%);
     animation: text-rotator-cycle 15s ease-in-out infinite;
   }
 
-  .text-rotator-line:nth-child(2) {
-    animation-delay: 3s;
-  }
-
-  .text-rotator-line:nth-child(3) {
-    animation-delay: 6s;
-  }
-
-  .text-rotator-line:nth-child(4) {
-    animation-delay: 9s;
-  }
-
-  .text-rotator-line:nth-child(5) {
-    animation-delay: 12s;
-  }
-
-  .logo-marquee {
-    @apply relative flex min-w-0 flex-1 overflow-hidden;
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  }
-
-  .logo-marquee-track {
-    @apply flex w-max items-center gap-4;
-    animation: logo-marquee-scroll 22s linear infinite;
-  }
-
-  .logo-marquee-item {
-    @apply inline-flex h-16 w-56 shrink-0 items-center gap-3 rounded-full border border-white/10 bg-white px-5 text-sm font-semibold text-slate-950 shadow-lg shadow-black/20;
-  }
-
-  .logo-marquee:hover .logo-marquee-track {
-    animation-play-state: paused;
-  }
+  .text-rotator-line:nth-child(2) { animation-delay: 3s; }
+  .text-rotator-line:nth-child(3) { animation-delay: 6s; }
+  .text-rotator-line:nth-child(4) { animation-delay: 9s; }
+  .text-rotator-line:nth-child(5) { animation-delay: 12s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .logo-marquee {
-      @apply overflow-x-auto;
-      mask-image: none;
-    }
-
-    .logo-marquee-track {
+    .text-rotator-line {
       animation: none;
+    }
+    .text-rotator-line:not(:first-child) {
+      display: none;
+    }
+    .text-rotator-line:first-child {
+      opacity: 1;
     }
   }
 }
 
 @keyframes text-rotator-cycle {
-  0% {
-    opacity: 0;
-    transform: translateY(40%);
-  }
-  3%,
-  15% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-  19%,
-  100% {
-    opacity: 0;
-    transform: translateY(-40%);
-  }
-}
-
-@keyframes logo-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(calc(-50% - 0.5rem));
-  }
+  0% { opacity: 0; transform: translateY(0.25em); }
+  3%, 15% { opacity: 1; transform: translateY(0); }
+  19%, 100% { opacity: 0; transform: translateY(-0.25em); }
 }

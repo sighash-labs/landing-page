@@ -4,10 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const audits = [
   {
     name: 'ParyonUSD',
-    description: 'Stablecoin protocol on Bitcoin Cash (BCH).',
-    role: 'Smart contract and protocol security audit.',
+    description: 'Stablecoin protocol on Bitcoin Cash.',
+    network: 'Bitcoin Cash',
     status: 'Completed',
-    network: 'Bitcoin Cash (BCH)',
     report: '/audits/paryonusd.pdf',
   },
 ];
@@ -15,60 +14,52 @@ const audits = [
 
 <BaseLayout
   title="Audits – Sighash Labs"
-  description="Explore completed UTXO smart contract and protocol security audits for Bitcoin Cash, Bitcoin-like systems, and L2s from Sighash Labs."
+  description="Completed UTXO smart contract and protocol security audits from Sighash Labs."
 >
-  <section class="mx-auto max-w-6xl px-6 py-24">
-    <div class="max-w-3xl">
-      <p class="eyebrow">Audit library</p>
-      <h1 class="mt-4 text-4xl font-semibold text-white">Published UTXO security reviews</h1>
-      <p class="mt-4 text-base text-slate-300">
-        Audits remain a dedicated Sighash Labs service. This page collects public reports for Bitcoin Cash, UTXO smart contracts, transaction protocols, and Bitcoin-like systems where clients have approved publication.
-      </p>
-      <a
-        href="mailto:info@sighash.xyz"
-        class="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-500/90 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/40 transition hover:-translate-y-0.5 hover:bg-emerald-400"
-      >
-        Request an audit or review
-      </a>
-    </div>
+  <section class="mx-auto max-w-5xl px-6 pt-28 pb-16 sm:pt-36">
+    <p class="label">Audit archive</p>
+    <h1 class="mt-8 max-w-2xl text-4xl font-medium leading-[1.1] tracking-tight sm:text-5xl">
+      Published security reviews
+    </h1>
+    <p class="mt-8 max-w-xl text-base leading-relaxed text-stone-600">
+      Public reports for UTXO smart contracts and transaction protocols, where clients have approved publication.
+    </p>
+  </section>
 
-    <div class="mt-14 space-y-6">
+  <section class="rule">
+    <div class="mx-auto max-w-5xl px-6">
       {audits.map((audit) => (
-        <article class="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-lg shadow-black/30">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <h2 class="text-2xl font-semibold text-white">{audit.name}</h2>
-              <p class="mt-2 text-sm text-slate-300">{audit.description}</p>
-            </div>
-            <span class={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${audit.status === 'Pending' ? 'border-amber-400/30 text-amber-300' : 'border-emerald-400/30 text-emerald-300'}`}>
-              {audit.status}
-            </span>
+        <article class="grid gap-6 border-line py-10 sm:grid-cols-[1.5fr_1fr_1fr_auto] sm:items-baseline [&:not(:first-child)]:border-t">
+          <div>
+            <h2 class="text-lg font-medium">{audit.name}</h2>
+            <p class="mt-2 text-sm text-stone-600">{audit.description}</p>
           </div>
-
-          <dl class="mt-6 grid gap-6 sm:grid-cols-3">
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-400">Network</dt>
-              <dd class="mt-2 text-sm text-white">{audit.network}</dd>
-            </div>
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-400">Role</dt>
-              <dd class="mt-2 text-sm text-white">{audit.role}</dd>
-            </div>
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-400">Public report</dt>
-              <dd class="mt-2 text-sm text-slate-300">
-                {audit.report ? (
-                  <a href={audit.report} class="text-emerald-300 underline-offset-4 hover:text-white hover:underline">
-                    View report
-                  </a>
-                ) : (
-                  'Coming soon'
-                )}
-              </dd>
-            </div>
-          </dl>
+          <div>
+            <p class="label">Network</p>
+            <p class="mt-2 text-sm text-stone-700">{audit.network}</p>
+          </div>
+          <div>
+            <p class="label">Status</p>
+            <p class="mt-2 text-sm text-stone-700">{audit.status}</p>
+          </div>
+          {audit.report && (
+            <a href={audit.report} class="font-mono text-sm text-emerald-700 transition-colors hover:text-ink">
+              Report →
+            </a>
+          )}
         </article>
       ))}
+    </div>
+  </section>
+
+  <section class="rule">
+    <div class="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-20 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="max-w-md text-2xl font-medium leading-snug tracking-tight sm:text-3xl">
+        Request an audit or pre-launch review.
+      </h2>
+      <a href="mailto:info@sighash.xyz" class="font-mono text-sm text-emerald-700 transition-colors hover:text-ink">
+        info@sighash.xyz →
+      </a>
     </div>
   </section>
 </BaseLayout>
